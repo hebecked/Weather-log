@@ -1,0 +1,4 @@
+#date       time               T_i   T_a  Dewp    H_i  H_a     Wspd   Wdir  Wdir   Gust Chill     Rain   Pressure
+#                              °C    °C    °C      %    %      m/s      °          m/s    °C       mm        hPa
+2015-Jun-23 17:25:26 CEST+2   26.3 None None 41 None None 128 ESE None None 0 1003.3
+2015-Jun-23 17:26:36 CEST+2   26.3 None None 41 None None 128 ESE None None 0 1003.3

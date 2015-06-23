@@ -7,6 +7,7 @@ import numpy as np
 import os.path
 import argparse
 import fileinput
+import sys
 
 parser = argparse.ArgumentParser(description='This script is meant for the analysis of WLS absorbtion measurements.')
 parser.add_argument('-ci', '--check-integrity', dest='CHECK', action='store_true', help='Check whether the output file contains all Data sets that are still left in the memory of the weather Station.', default="FALSE")
