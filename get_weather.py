@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser(description='This script is meant for the analy
 parser.add_argument('-ci', '--check-integrity', dest='CHECK', action='store_true', help='Check whether the output file contains all Data sets that are still left in the memory of the weather Station.', default=False)
 parser.add_argument('-c', '--current', dest='CURRENT', action='store_true', help='Append current conditions to output file.', default=False)
 parser.add_argument('-s', '--show', dest='SHOW', action='store_true', help='Show current conditions on standard output', default=False)
-parser.add_argument('-p', '--path', dest='PATH', action='store', type="str", help='Defines where the log file is/will be stored. only valid with -ci and/or -c', default="weather.txt")
+parser.add_argument('-p', '--path', dest='PATH', action='store', type=str, help='Defines where the log file is/will be stored. only valid with -ci and/or -c', default="weather.txt")
 
 args = parser.parse_args()
 
