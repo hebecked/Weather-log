@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # A script by Dustin Hebecker
 
-import WeatherStation
+import WeatherStation.WeatherStation as WeatherStation
 import time
 import numpy as np
 import os.path
