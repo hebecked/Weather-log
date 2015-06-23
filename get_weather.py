@@ -14,6 +14,7 @@ parser = argparse.ArgumentParser(description='This script is meant for the analy
 parser.add_argument('-ci', '--check-integrity', dest='CHECK', action='store_true', help='Check whether the output file contains all Data sets that are still left in the memory of the weather Station.', default=False)
 parser.add_argument('-c', '--current', dest='CURRENT', action='store_true', help='Append current conditions to output file.', default=False)
 parser.add_argument('-s', '--show', dest='SHOW', action='store_true', help='Show current conditions on standard output', default=False)
+parser.add_argument('-p', '--path', dest='PATH', action='store', type="str", help='Defines where the log file is/will be stored. only valid with -ci and/or -c', default="weather.txt")
 
 args = parser.parse_args()
 
@@ -44,12 +45,12 @@ if args.CURRENT or args.SHOW:
 	legend1 = "#date       time               T_i   T_a  Dewp    H_i  H_a     Wspd   Wdir  Wdir   Gust Chill     Rain   Pressure\n"
 	legend2 = "#                              °C    °C    °C      %    %      m/s      °          m/s    °C       mm        hPa\n"
 	if args.CURRENT:
-		if not os.path.isfile("weather.txt"):
-			FILE = open("weather.txt","w")
+		if not os.path.isfile(args.PATH):
+			FILE = open(args.PATH,"w")
 			FILE.write(legend1)
 			FILE.write(legend2)
 		else:
-			FILE = open("weather.txt","a")
+			FILE = open(args.PATH,"a")
 		FILE.write(weather_str)
 		FILE.close()
 
@@ -63,7 +64,7 @@ if args.CURRENT or args.SHOW:
 if args.CHECK:
 	sys.exit(0)# temporary solution until cross reference with logged data is implemented
 
-	with open("weather.txt") as FILE:
+	with open(args.PATH) as FILE:
 	    lines = FILE.readlines()
 	    if (len(lines) > 5):
 	    	# get time line 12 len(lines)/2 len(lines)/2-1 and get minimal difference
