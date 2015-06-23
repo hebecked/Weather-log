@@ -1,5 +1,7 @@
 # Weather-log
-A python programm to LOG and display weather data from a WH2080 Weather station (e.g. Conrad etc.)
+A python program to LOG and display weather data from a WH2080 Weather station (e.g. Conrad etc.) in periodic intervals. 
+For the lower level device handling a library by Jim Easterbrook is used.
+The program is written by Dustin Hebecker
 
 
 dependencies:

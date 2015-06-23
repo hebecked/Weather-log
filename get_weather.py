@@ -1,5 +1,6 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
+# A script by Dustin Hebecker
 
 import WeatherStation
 import time
@@ -34,19 +35,12 @@ if args.CURRENT or args.SHOW:
 
 	"Needs to adapt for summer and wintertime"
 
-	weather_str = ( str(pc_time.tm_year) + "-" + str(pc_month) + "-" + str(pc_time.tm_mday) + " " + str(pc_time.tm_hour) + ":" + str(pc_time.tm_min) + ":" + str(pc_time.tm_sec) + " " + "CEST+2" + "   " + 
+	weather_str = ( str(pc_time.tm_year) + "-" + str(pc_month) + "-" + str(pc_time.tm_mday).zfill(2) + " " + str(pc_time.tm_hour).zfill(2) + ":" + str(pc_time.tm_min).zfill(2) + ":" + str(pc_time.tm_sec).zfill(2) + " " + "CEST+2" + "   " + 
 					str(weather['temp_in']) + " " + str(weather['temp_out']) + " " + str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out'])) + " " + str(weather['hum_in']) + " " + str(weather['hum_out']) + " " + str(weather['wind_ave']) +
 					" " + str(weather['wind_dir']) + " " + str(wind_dirs[int(weather['wind_dir']*16./360.)]) + " " + str(weather['wind_gust']) + " " + str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave'])) + " " + str(weather['rain']) +
 					" " + str(weather['abs_pressure']) + "\n"
 				   )
 
-	''' Works only in Python 3
-	weather_str = ( str(pc_time.tm_year) + "-" + str(pc_month) + "-" + str(pc_time.tm_mday) + " " + str(pc_time.tm_hour) + ":" + str(pc_time.tm_min) + ":" + str(pc_time.tm_sec) + " " + str(time.localtime().tm_zone) + "   " + 
-					str(weather['temp_in']) + " " + str(weather['temp_out']) + " " + str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out'])) + " " + str(weather['hum_in']) + " " + str(weather['hum_out']) + " " + str(weather['wind_ave']) +
-					" " + str(weather['wind_dir']) + " " + str(wind_dirs[int(weather['wind_dir']*16./360.)]) + " " + str(weather['wind_gust']) + " " + str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave'])) + " " + str(weather['rain']) +
-					" " + str(weather['abs_pressure']) + "\n"
-				   )
-	'''
 	legend1 = "#date       time               T_i   T_a  Dewp    H_i  H_a     Wspd   Wdir  Wdir   Gust Chill     Rain   Pressure\n"
 	legend2 = "#                              °C    °C    °C      %    %      m/s      °          m/s    °C       mm        hPa\n"
 	if args.CURRENT:
