@@ -11,9 +11,9 @@ import fileinput
 import sys
 
 parser = argparse.ArgumentParser(description='This script is meant for the analysis of WLS absorbtion measurements.')
-parser.add_argument('-ci', '--check-integrity', dest='CHECK', action='store_true', help='Check whether the output file contains all Data sets that are still left in the memory of the weather Station.', default="FALSE")
-parser.add_argument('-c', '--current', dest='CURRENT', action='store_true', help='Append current conditions to output file.', default="FALSE")
-parser.add_argument('-s', '--show', dest='SHOW', action='store_true', help='Show current conditions on standard output', default="FALSE")
+parser.add_argument('-ci', '--check-integrity', dest='CHECK', action='store_true', help='Check whether the output file contains all Data sets that are still left in the memory of the weather Station.', default="False")
+parser.add_argument('-c', '--current', dest='CURRENT', action='store_true', help='Append current conditions to output file.', default="False")
+parser.add_argument('-s', '--show', dest='SHOW', action='store_true', help='Show current conditions on standard output', default="False")
 
 args = parser.parse_args()
 
