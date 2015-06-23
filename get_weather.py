@@ -15,7 +15,7 @@ parser.add_argument('-s', '--show', dest='SHOW', action='store_true', help='Show
 
 args = parser.parse_args()
 
-if ags.CURRENT or args.SHOW:
+if args.CURRENT or args.SHOW:
 
 	wind_dirs=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW']
 
