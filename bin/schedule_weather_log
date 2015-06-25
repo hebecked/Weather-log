@@ -1,5 +1,49 @@
+#!/usr/bin/python2.7
+# -*- coding: utf-8 -*-
+# A script by Dustin Hebecker
+
+import time
+import os
+import argparse
+import sys
+import subprocess
+
+if os.geteuid() != 0:
+    exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
+
+
+parser = argparse.ArgumentParser(description='This script is meant for create and remove automatic weather logs using crontab.')
+parser.add_argument('-ci', '--create-integrity-check', dest='INT', action='store', type=int, help='', default=12)
+parser.add_argument('-cl', '--create-logging', dest='LOG', action='store', type=int, help='', default=20)
+parser.add_argument('-ri', '--remove-integritey-check', dest='RINT', action='store', type=int, help='', default=12)
+parser.add_argument('-rl', '--remove-logging', dest='RLOG', action='store', type=int, help='', default=20)
+parser.add_argument('-s', '--show', dest='RLOG', action='store_true', help='Show currently enabled jobs.', default=False)
+
+args = parser.parse_args()
+
+
+TEMPFILE = open('cron.tmp','w')
+proc = subprocess.Popen(['crontab','-l'], stdout=subprocess.PIPE)
+
+for line in proc.stdout.readline():
+	if line == '':
+		break
+	#check for match and deal with it
+	## add as needed
+	TEMPFILE.write(line)
+
+TEMPFILE.close()
+os.system('crontab ./cron.tmp')
+os.system('rm -f ./cron.tmp')
 
 
 
+
+
+'''
+crontab -l /show
+crontab -r /remove
+crontab filename / overwrite exiting file with new one
+'''
 #minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday), command 
 #create and erase con jobs

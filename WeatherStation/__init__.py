@@ -1,6 +1,6 @@
 """ A basic library to read WH2080/WH3080 compatible weather stations.
-Created by Jim Easterbrook, Michael Pendec, Svend Skafte, Dave Wells
-and others.
+This version is based on work by Jim Easterbrook, Michael Pendec, 
+Svend Skafte, Dave Wells, Dustin Hebecker and others.
 
 pywws - Python software for USB Wireless Weather Stations
 http://github.com/jim-easterbrook/pywws

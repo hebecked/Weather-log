@@ -36,8 +36,11 @@ if args.CURRENT or args.SHOW:
 
 	"Needs to adapt for summer and wintertime"
 
-	weather_str = ( str(pc_time.tm_year) + "-" + str(pc_month) + "-" + str(pc_time.tm_mday).zfill(2) + " " + str(pc_time.tm_hour).zfill(2) + ":" + str(pc_time.tm_min).zfill(2) + ":" + str(pc_time.tm_sec).zfill(2) + " " + "CEST+2" + "   " + 
-					str(weather['temp_in']) + " " + str(weather['temp_out']) + " " + str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out'])) + " " + str(weather['hum_in']) + " " + str(weather['hum_out']) + " " + str(weather['wind_ave']) +
+
+
+	time_str = ( str(pc_time.tm_year) + "-" + str(pc_month) + "-" + str(pc_time.tm_mday).zfill(2) + " " + str(pc_time.tm_hour).zfill(2) + ":" + str(pc_time.tm_min).zfill(2) + ":" + str(pc_time.tm_sec).zfill(2) + " " + time.strftime("%Z", time.localtime()) + str(-time.timezone/3600) )
+
+	weather_str = (  time_str + "   " + str(weather['temp_in']) + " " + str(weather['temp_out']) + " " + str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out'])) + " " + str(weather['hum_in']) + " " + str(weather['hum_out']) + " " + str(weather['wind_ave']) +
 					" " + str(weather['wind_dir']) + " " + str(wind_dirs[int(weather['wind_dir']*16./360.)]) + " " + str(weather['wind_gust']) + " " + str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave'])) + " " + str(weather['rain']) +
 					" " + str(weather['abs_pressure']) + "\n"
 				   )
@@ -75,6 +78,23 @@ if args.CHECK:
 
 
 	    	'''stile: 
+
+ #   ws = weather_station()
+ 
+"""
+    print ws.get_fixed_block(['date_time'],True)
+    print ws.current_pos()
+    print ws.get_fixed_block(['alarm'],True) 
+    print ws.get_data(ws.current_pos())
+    print ws.current_pos()
+    print ws.get_fixed_block(['read_period'],True) , ws.current_pos()
+
+    #print CUSBDrive.write_byte(ws.cusb, 43, 124)
+    
+    for data, ptr, logged in ws.live_data():
+        print data
+
+"""
 
 
 	for line in fileinput.input('1.txt', inplace=1):
