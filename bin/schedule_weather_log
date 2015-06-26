@@ -21,7 +21,7 @@ def make_schedule(time=-1, pos=-1, flag=''):
 		for i in range(5):
 			if pos==i:
 				string+="*/" + str(time) + " "
-			else
+			else:
 				string+="* "
 	string +=prog
 	if flag !='':
