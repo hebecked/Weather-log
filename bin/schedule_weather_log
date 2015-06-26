@@ -11,32 +11,55 @@ import subprocess
 if os.geteuid() != 0:
     exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
 
+def make_schedule(time=-1, pos=-1, flag=''):
+	#os.path.realpath(__file__)
+	#os.path.abspath(pathname)
+	prog_path = os.path.split(os.path.realpath(__file__))[0]
+	prog = os.path.join(prog_path,"get_weather")
+	sring = ""
+	if time!=-1:
+		for i in range(5):
+			if pos==i:
+				string+="*/" + str(time) + " "
+			else
+				string+="* "
+	string +=prog
+	if flag !='':
+		string += " " + flag
+	return string
 
 parser = argparse.ArgumentParser(description='This script is meant for create and remove automatic weather logs using crontab.')
-parser.add_argument('-ci', '--create-integrity-check', dest='INT', action='store', type=int, help='', default=12)
-parser.add_argument('-cl', '--create-logging', dest='LOG', action='store', type=int, help='', default=20)
-parser.add_argument('-ri', '--remove-integritey-check', dest='RINT', action='store', type=int, help='', default=12)
-parser.add_argument('-rl', '--remove-logging', dest='RLOG', action='store', type=int, help='', default=20)
-parser.add_argument('-s', '--show', dest='RLOG', action='store_true', help='Show currently enabled jobs.', default=False)
+parser.add_argument('-ci', '--create-integrity-check', dest='INT', action='store', type=int, help='Schedule an integrity check of the data taken, with the data stored in the weather stations log. Please supply a interval for this checks in hours. For clean scheduling the number should be a divisor of 24.', default=12)
+parser.add_argument('-cl', '--create-logging', dest='LOG', action='store', type=int, help='Schedule the logging of weather data from the weather station. Pleas supply a interval in Minutes. For clean scheduling the number should be a divisor of 60', default=20)
+parser.add_argument('-ri', '--remove-integritey-check', dest='RINT', action='store', type=int, help='Remove a schedule for an integrity check. Supply the interval or -1 to remove all.', default=12)
+parser.add_argument('-rl', '--remove-logging', dest='RLOG', action='store', type=int, help='Remove a logging schedule. Supply the interval or -1 to remove all.', default=20)
+parser.add_argument('-s', '--show', dest='SHOW', action='store_true', help='Show currently enabled jobs.', default=False)
 
 args = parser.parse_args()
 
 
-TEMPFILE = open('cron.tmp','w')
+TEMPFILE = open('/tmp/cron.tmp','w')
 proc = subprocess.Popen(['crontab','-l'], stdout=subprocess.PIPE)
 
 for line in proc.stdout.readline():
 	if line == '':
 		break
-	#check for match and deal with it
-	## add as needed
-	TEMPFILE.write(line)
+	if args.SHOW and line.find(make_schedule())!=-1:
+		print line
+	if args.RINT and line.find(make_schedule(time=args.RINT,pos=1,"-ci"))!=-1:
+		print "Found and removed"
+	elif args.RLOG and line.find(make_schedule(time=args.RLOG,pos=0,"-c"))!=-1:
+		print "Found and removed"
+	else:
+		TEMPFILE.write(line)
+if args.INT:
+	TEMPFILE.write(make_schedule(time=args.INT, pos=1, flag='-ci'))
+if args.LOG:
+	TEMPFILE.write(make_schedule(time=args.INT, pos=0, flag='-c'))
 
 TEMPFILE.close()
-os.system('crontab ./cron.tmp')
-os.system('rm -f ./cron.tmp')
-
-
+os.system('crontab /tmp/cron.tmp')
+os.system('rm -f /tmp/cron.tmp')
 
 
 
@@ -44,6 +67,6 @@ os.system('rm -f ./cron.tmp')
 crontab -l /show
 crontab -r /remove
 crontab filename / overwrite exiting file with new one
-'''
 #minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday), command 
 #create and erase con jobs
+'''

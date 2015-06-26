@@ -34,16 +34,11 @@ if args.CURRENT or args.SHOW:
 	if( diff_time > 600 ):
 		print "Warning:\nThe time difference between weather station and computer exceeds reasonable limits!!!"
 
-	"Needs to adapt for summer and wintertime"
-
-
-
 	time_str = ( str(pc_time.tm_year) + "-" + str(pc_month) + "-" + str(pc_time.tm_mday).zfill(2) + " " + str(pc_time.tm_hour).zfill(2) + ":" + str(pc_time.tm_min).zfill(2) + ":" + str(pc_time.tm_sec).zfill(2) + " " + time.strftime("%Z", time.localtime()) + str(-time.timezone/3600) )
 
 	weather_str = (  time_str + "   " + str(weather['temp_in']) + " " + str(weather['temp_out']) + " " + str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out'])) + " " + str(weather['hum_in']) + " " + str(weather['hum_out']) + " " + str(weather['wind_ave']) +
 					" " + str(weather['wind_dir']) + " " + str(wind_dirs[int(weather['wind_dir']*16./360.)]) + " " + str(weather['wind_gust']) + " " + str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave'])) + " " + str(weather['rain']) +
-					" " + str(weather['abs_pressure']) + "\n"
-				   )
+					" " + str(weather['abs_pressure']) + "\n")
 
 	legend1 = "#date       time               T_i   T_a  Dewp    H_i  H_a     Wspd   Wdir  Wdir   Gust Chill     Rain   Pressure\n"
 	legend2 = "#                              °C    °C    °C      %    %      m/s      °          m/s    °C       mm        hPa\n"
@@ -62,8 +57,8 @@ if args.CURRENT or args.SHOW:
 		print legend2
 		print weather_str
 
-
-
+'''ToDO: implement consitency check!!!'''
+'''Just dont mind the stuff behind this line yet'''
 if args.CHECK:
 	sys.exit(0)# temporary solution until cross reference with logged data is implemented
 
@@ -75,7 +70,6 @@ if args.CHECK:
 	    	#calculat how many matchin values should be stored.
 	    	#read max values last entries from log
 	    	# check if all consistent if not fetch corresponding values from station log and insert
-
 
 	    	'''stile: 
 
