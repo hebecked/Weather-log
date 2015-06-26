@@ -16,7 +16,7 @@ def make_schedule(time=-1, pos=-1, flag=''):
 	#os.path.abspath(pathname)
 	prog_path = os.path.split(os.path.realpath(__file__))[0]
 	prog = os.path.join(prog_path,"get_weather")
-	sring = ""
+	string = ""
 	if time!=-1:
 		for i in range(5):
 			if pos==i:
