@@ -33,6 +33,7 @@ parser.add_argument('-ci', '--create-integrity-check', dest='INT', action='store
 parser.add_argument('-cl', '--create-logging', dest='LOG', action='store', type=int, help='Schedule the logging of weather data from the weather station. Pleas supply a interval in Minutes. For clean scheduling the number should be a divisor of 60', default=None)
 parser.add_argument('-ri', '--remove-integritey-check', dest='RINT', action='store', type=int, help='Remove a schedule for an integrity check. Supply the interval or -1 to remove all.', default=None)
 parser.add_argument('-rl', '--remove-logging', dest='RLOG', action='store', type=int, help='Remove a logging schedule. Supply the interval or -1 to remove all.', default=None)
+parser.add_argument('-s', '--show', dest='SHOW', action='store_true', help='Show currently installed schedules.', default=False)
 parser.add_argument('-f', '--flag', dest='FLAG', action='store', type=str, help='A additional flag that is to be appended to the function call. E.g. output path.', default="")
 
 args = parser.parse_args()
