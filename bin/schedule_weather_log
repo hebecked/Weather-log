@@ -61,7 +61,7 @@ if args.INT:
 	TEMPFILE.write(make_schedule(time=args.INT, pos=1, flag='-ci') + flag)
 if args.LOG:
 	TEMPFILE.write(make_schedule(time=args.LOG, pos=0, flag='-c') + flag)
-
+TEMPFILE.write("\n")
 TEMPFILE.close()
 os.system('crontab /tmp/cron.tmp')
 os.system('rm -f /tmp/cron.tmp')
