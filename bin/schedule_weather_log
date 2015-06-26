@@ -46,9 +46,9 @@ for line in proc.stdout.readline():
 		break
 	if args.SHOW and line.find(make_schedule())!=-1:
 		print line
-	if args.RINT and line.find(make_schedule(time=args.RINT,pos=1,"-ci"))!=-1:
+	if args.RINT and line.find(make_schedule(time=args.RINT,pos=1,flag="-ci"))!=-1:
 		print "Found and removed"
-	elif args.RLOG and line.find(make_schedule(time=args.RLOG,pos=0,"-c"))!=-1:
+	elif args.RLOG and line.find(make_schedule(time=args.RLOG,pos=0,flag="-c"))!=-1:
 		print "Found and removed"
 	else:
 		TEMPFILE.write(line)
