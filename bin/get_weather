@@ -42,8 +42,8 @@ if args.CURRENT or args.SHOW:
 					[str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out'])), "0"][str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out']))=='None']  + " " + 
 					[str(weather['hum_in']), "0"][str(weather['hum_in'])=='None']  + " " + [str(weather['hum_out']), "0"][str(weather['hum_out'])=='None']  + " " + [str(weather['wind_ave']), "0"][str(weather['wind_ave'])=='None'] +
 					" " + str(weather['wind_dir']) + " " + str(wind_dirs[int(weather['wind_dir']*16./360.)]) + " " + [str(weather['wind_gust']), "0"][str(weather['wind_gust'])=='None'] + " " + 
-					[str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave'])), "0"][str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave']))=='None']  + " " + [str(weather['rain']), "-20"][str(weather['rain'])=='None'] +
-					" " + [str(weather['abs_pressure']), "-20"][str(weather['abs_pressure'])=='None']  + "\n")
+					[str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave'])), "0"][str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave']))=='None']  + " " + [str(weather['rain']), "0"][str(weather['rain'])=='None'] +
+					" " + [str(weather['abs_pressure']), "800"][str(weather['abs_pressure'])=='None']  + "\n")
 	else:
 		weather_str = (  time_str + "   " + str(weather['temp_in']) + " " + str(weather['temp_out']) + " " + str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out'])) + " " + str(weather['hum_in']) + " " + str(weather['hum_out']) + " " + str(weather['wind_ave']) +
 					" " + str(weather['wind_dir']) + " " + str(wind_dirs[int(weather['wind_dir']*16./360.)]) + " " + str(weather['wind_gust']) + " " + str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave'])) + " " + str(weather['rain']) +
