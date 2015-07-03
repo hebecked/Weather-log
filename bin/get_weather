@@ -35,17 +35,17 @@ if args.CURRENT or args.SHOW:
 	if( diff_time > 600 ):
 		print "Warning:\nThe time difference between weather station and computer exceeds reasonable limits!!!"
 
-	time_str = ( str(pc_time.tm_year) + "-" + str(pc_month) + "-" + str(pc_time.tm_mday).zfill(2) + " " + str(pc_time.tm_hour).zfill(2) + ":" + str(pc_time.tm_min).zfill(2) + ":" + str(pc_time.tm_sec).zfill(2) + " " + time.strftime("%Z", time.localtime()) + ["", "+"][-time.timezone/3600+time.daylight > 0] + str(-time.timezone/3600+time.daylight) )
+	time_str = ( str(pc_time.tm_year) + "-" + str(pc_month) + "-" + str(pc_time.tm_mday).zfill(2) + " " + str(pc_time.tm_hour).zfill(2) + ":" + str(pc_time.tm_min).zfill(2) + ":" + str(pc_time.tm_sec).zfill(2) + " " + time.strftime("%Z", time.localtime()) + ["", "+"][-time.timezone/3600+time.daylight > 0] + str(-time.timezone/3600+time.daylight).zfill(2) )
 
 	if args.DEFAULT:
 		weather_str = (  time_str + "   " + [str(weather['temp_in']), "-20"][str(weather['temp_in'])=='None']  + " " + [str(weather['temp_out']), "-20"][str(weather['temp_out'])=='None'] + " " + 
-					[str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out'])), "0"][str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out']))=='None']  + " " + 
+					[str(format(WeatherStation.dew_point(weather['temp_out'],weather['hum_out']),".2f")), "0"][str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out']))=='None']  + " " + 
 					[str(weather['hum_in']), "0"][str(weather['hum_in'])=='None']  + " " + [str(weather['hum_out']), "0"][str(weather['hum_out'])=='None']  + " " + [str(weather['wind_ave']), "0"][str(weather['wind_ave'])=='None'] +
 					" " + str(weather['wind_dir']) + " " + str(wind_dirs[int(weather['wind_dir']*16./360.)]) + " " + [str(weather['wind_gust']), "0"][str(weather['wind_gust'])=='None'] + " " + 
 					[str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave'])), "0"][str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave']))=='None']  + " " + [str(weather['rain']), "0"][str(weather['rain'])=='None'] +
 					" " + [str(weather['abs_pressure']), "800"][str(weather['abs_pressure'])=='None']  + "\n")
 	else:
-		weather_str = (  time_str + "   " + str(weather['temp_in']) + " " + str(weather['temp_out']) + " " + str(WeatherStation.dew_point(weather['temp_out'],weather['hum_out'])) + " " + str(weather['hum_in']) + " " + str(weather['hum_out']) + " " + str(weather['wind_ave']) +
+		weather_str = (  time_str + "   " + str(weather['temp_in']) + " " + str(weather['temp_out']) + " " + str(format(WeatherStation.dew_point(weather['temp_out'],weather['hum_out']), '.2f')) + " " + str(weather['hum_in']) + " " + str(weather['hum_out']) + " " + str(weather['wind_ave']) +
 					" " + str(weather['wind_dir']) + " " + str(wind_dirs[int(weather['wind_dir']*16./360.)]) + " " + str(weather['wind_gust']) + " " + str(WeatherStation.wind_chill(weather['temp_out'], weather['wind_ave'])) + " " + str(weather['rain']) +
 					" " + str(weather['abs_pressure']) + "\n")
 
