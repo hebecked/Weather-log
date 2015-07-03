@@ -62,6 +62,11 @@ if args.CURRENT or args.SHOW:
 if args.CHECK:
 	sys.exit(0)# temporary solution until cross reference with logged data is implemented
 
+	logg=[]
+	for i in range(65280/16):
+		logg.append(ws.get_data(ws.current_pos()-(i*16)%65280), True)
+	read_period = ws.get_fixed_block(['read_period'],True)
+
 	with open(args.PATH) as FILE:
 	    lines = FILE.readlines()
 	    if (len(lines) > 5):
@@ -76,6 +81,7 @@ if args.CHECK:
  #   ws = weather_station()
  
 """
+OLD:::
     print ws.get_fixed_block(['date_time'],True)
     print ws.current_pos()
     print ws.get_fixed_block(['alarm'],True) 
@@ -97,3 +103,9 @@ if args.CHECK:
 	     print 'foo bar'
 	'''
 	#
+
+
+'''can be used to get REAl live data:
+    for data, ptr, logged in ws.live_data():
+        print data
+'''

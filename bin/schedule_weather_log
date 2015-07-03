@@ -69,9 +69,22 @@ os.system('rm -f /tmp/cron.tmp')
 
 
 '''
+restructure:
+
+get all time in Minutes
+make shure that smaller equal 24 h
+see if it can be split if so do so and creat time
+otherwhise create multiple jobs
+'''
+
+'''
 crontab -l /show
 crontab -r /remove
 crontab filename / overwrite exiting file with new one
 #minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday), command 
 #create and erase con jobs
 '''
+
+
+# Change logging period
+#ws.write_data([(ws.fixed_format['read_period'][0],**loggongtime***)])
