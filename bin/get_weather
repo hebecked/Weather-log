@@ -11,7 +11,7 @@ import fileinput
 import sys
 
 
-def dew_point(temp_out,hum_out,default=false):
+def dew_point(temp_out,hum_out,default=False):
 	if temp_out==None or hum_out==None:
 		if default:
 			return '0'
